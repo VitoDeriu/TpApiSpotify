@@ -10,6 +10,8 @@ import (
 func InitServe() {
 
 	http.HandleFunc("/", ctrl.Home)
+	http.HandleFunc("/jul", ctrl.Jul)
+	http.HandleFunc("/sdm", ctrl.Sdm)
 
 	rootDoc, _ := os.Getwd()
 	fileserver := http.FileServer(http.Dir(rootDoc + "/assets"))
