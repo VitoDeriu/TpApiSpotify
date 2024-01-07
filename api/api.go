@@ -1,6 +1,8 @@
 package api
 
 import (
+	a "TpApiSpotify/struct"
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
@@ -19,7 +21,7 @@ func ApiJul() {
 		fmt.Println("oups il y a un probleme avec la requete : ", errReq.Error())
 	}
 
-	req.Header.Set("jsp quoi écrire", "là / non plus")
+	req.Header.Set("Api_Spotify", "jsp pas quoi mettre")
 
 	res, errRes := httpClient.Do(req)
 	if res.Body != nil {
@@ -32,4 +34,19 @@ func ApiJul() {
 	if errBody != nil {
 		fmt.Println("oups il y a un probleme avec le corps de la requete : ", errBody.Error())
 	}
+
+
+	//variable de type ApiData struct pour y écrire les info qu'on récup du json de l'api
+	var decodeData a.ApiData
+
+
+	//on y écrit les info du json de l'api
+	json.Unmarshal(body, &decodeData)
+
+
+	//ca jsp a quooi ca sert
+	fmt.Println(decodeData.Result[0])
+
+
+
 }
